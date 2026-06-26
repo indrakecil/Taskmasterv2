@@ -136,6 +136,20 @@ const Utils = (() => {
 
   };
 
+const showAlert = (message) => {
+
+  try {
+
+    SpreadsheetApp.getUi().alert(message);
+
+  } catch (e) {
+
+    Logger.log(message);
+
+  }
+
+};
+
   return {
 
     uuid,
@@ -157,6 +171,8 @@ const Utils = (() => {
     escapeHtml,
 
     isBlank
+
+    showAlert
 
   };
 

@@ -14,8 +14,18 @@ const DatabaseService = (() => {
    * @returns {Spreadsheet}
    */
   const getSpreadsheet = () => {
-    return SpreadsheetApp.getActiveSpreadsheet();
-  };
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  if (!ss) {
+
+    throw new Error("Spreadsheet aktif tidak ditemukan.");
+
+  }
+
+  return ss;
+
+};
 
   /**
    * Mengambil sheet berdasarkan nama.
@@ -65,11 +75,18 @@ const DatabaseService = (() => {
    * @param {string} sheetName
    * @returns {Array}
    */
-  const getHeaders = (sheetName) => {
+ const getHeaders = (sheetName) => {
 
-    return Constants.HEADER[sheetName] || [];
+  const key = Object.keys(Constants.SHEETS)
+    .find(k => Constants.SHEETS[k] === sheetName);
 
-  };
+  if (!key) {
+    return [];
+  }
+
+  return Constants.HEADER[key] || [];
+
+};
 
   /**
    * Mengambil seluruh data sheet.
@@ -107,26 +124,40 @@ const DatabaseService = (() => {
    * @param {string} sheetName
    * @param {Object} data
    */
-  const insert = (sheetName, data) => {
+ const insert = (sheetName, data) => {
 
-    const sheet = getSheet(sheetName);
+  const sheet = getSheet(sheetName);
 
-    const headers = getHeaders(sheetName);
+  const headers = getHeaders(sheetName);
 
-    const row = headers.map(key => {
+  // Validasi header
+  if (!headers.length) {
 
-      return data[key] ?? "";
-
-    });
-
-    sheet.appendRow(row);
-
-    LoggerService.success(
-      "DATABASE",
-      `Insert data ke ${sheetName}`
+    throw new Error(
+      `Header untuk sheet "${sheetName}" belum tersedia.`
     );
 
-  };
+  }
+
+  // Validasi data
+  if (!data || typeof data !== "object") {
+
+    throw new Error(
+      "Data harus berupa object."
+    );
+
+  }
+
+  const row = headers.map(key => data[key] ?? "");
+
+  sheet.appendRow(row);
+
+  LoggerService.success(
+    "DATABASE",
+    `Insert data ke ${sheetName}`
+  );
+
+};
 
   return {
 

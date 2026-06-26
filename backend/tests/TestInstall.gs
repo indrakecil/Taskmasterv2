@@ -1,0 +1,5 @@
+function testInstall() {
+
+  InstallManager.initialize();
+
+}
