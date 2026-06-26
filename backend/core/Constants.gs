@@ -87,12 +87,109 @@ const Constants = Object.freeze({
 
   }),
 
+  STATUS: Object.freeze({
+
+  TODO: "TODO",
+  IN_PROGRESS: "IN_PROGRESS",
+  REVIEW: "REVIEW",
+  DONE: "DONE",
+  ARCHIVED: "ARCHIVED"
+
+}),
+
+PRIORITY: Object.freeze({
+
+  LOW: "LOW",
+  MEDIUM: "MEDIUM",
+  HIGH: "HIGH",
+  URGENT: "URGENT"
+
+}),
+
+ROLE: Object.freeze({
+
+  OWNER: "OWNER",
+  ADMIN: "ADMIN",
+  MEMBER: "MEMBER",
+  GUEST: "GUEST"
+
+}),
+
+TASK_TYPE: Object.freeze({
+
+  TASK: "TASK",
+  BUG: "BUG",
+  FEATURE: "FEATURE",
+  IMPROVEMENT: "IMPROVEMENT"
+
+}),
+
+PROJECT_STATUS: Object.freeze({
+
+  ACTIVE: "ACTIVE",
+  ARCHIVED: "ARCHIVED",
+  COMPLETED: "COMPLETED"
+
+}),
+
+WORKSPACE_STATUS: Object.freeze({
+
+  ACTIVE: "ACTIVE",
+  DISABLED: "DISABLED"
+
+}),
+
+DEFAULT: Object.freeze({
+
+  TASK_STATUS: "TODO",
+
+  PRIORITY: "MEDIUM",
+
+  ROLE: "MEMBER"
+
+}),
+
+SORT: Object.freeze({
+
+  ASC: "ASC",
+
+  DESC: "DESC"
+
+}),
+
+LIMIT: Object.freeze({
+
+  PAGE_SIZE: 20,
+
+  MAX_BATCH: 500
+
+}),
+
+WORKSPACE_ROLE: Object.freeze({
+
+  OWNER: "OWNER",
+  ADMIN: "ADMIN",
+  MEMBER: "MEMBER",
+  VIEWER: "VIEWER"
+
+}),
+
   REGEX: Object.freeze({
 
     EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     PHONE: /^[0-9+\-\s()]+$/
 
   }),
+
+DATE_FORMAT: Object.freeze({
+
+  DATE: "dd/MM/yyyy",
+
+  DATETIME: "dd/MM/yyyy HH:mm:ss",
+
+  ISO: "yyyy-MM-dd'T'HH:mm:ss'Z'"
+
+}),
 
   MIME: Object.freeze({
 
